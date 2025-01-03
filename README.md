@@ -47,8 +47,7 @@ Key Definitions
 Invoice Value:
 The total value of a transaction calculated using the formula:
 
-scss
-Copy code
+
 Invoice Value = ((Quantity * Avg_Price) * (1 - Discount_pct) * (1 + GST)) + Delivery_Charges
 Average Order Value (AOV):
 The total revenue divided by the number of transactions per customer.
