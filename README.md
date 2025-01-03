@@ -1,101 +1,138 @@
-# Marketing-insights-ML-python-ecommerce
-Business Context:  
-One of the leading E-Commerce Company would like to get marketing insights from the data to 
-define marketing strategies going forward.  Also, expecting to build an analytical dashboard to 
-monitor various KPI’s & business metrics. 
-Available Data: 
-Transaction data has been provided for the period of 1st Jan 2019 to 31st Dec 2019. The below data 
-sets have been provided.  
-Online_Sales.csv: This file contains actual orders data (point of Sales data) at transaction level with 
-below variables. 
-CustomerID: Customer unique ID 
-Transaction_ID: Transaction Unique ID 
-Transaction_Date: Date of Transaction 
-Product_SKU: SKU ID – Unique Id for product 
-Product_Description: Product Description 
-Product_Cateogry: Product Category 
-Quantity: Number of items ordered 
-Avg_Price: Price per one quantity 
-Delivery_Charges: Charges for delivery 
-Coupon_Status: Any discount coupon applied 
- 
-Customers_Data.csv: This file contains customer’s demographics. 
-CustomerID: Customer Unique ID 
-Gender: Gender of customer 
-Location: Location of Customer 
-Tenure_Months: Tenure in Months 
- 
-Discount_Coupon.csv: Discount coupons have been given for different categories in different 
-months 
-Month:  Discount coupon applied in that month 
-Product_Category: Product category 
-Coupon_Code: Coupon Code for given Category and given month 
-Discount_pct: Discount Percentage for given coupon 
- 
-Marketing_Spend.csv: Marketing spend on both offline & online channels on day wise. 
-Date: Date 
-Offline_Spend: Marketing spend on offline channels like TV, Radio, NewsPapers, Hordings etc… 
-Online_Spend: Marketing spend on online channels like Google keywords, facebook etc.. 
- 
-Tax_Amount.csv: GST Details for given category 
-Product_Category: Product Category 
-GST: Percentage of GST
+Marketing Insights with Machine Learning for E-Commerce Business
+Business Context
+This project is built to analyze marketing insights for a leading e-commerce company to help define future marketing strategies. The main goal is to understand the business performance through a detailed analysis of transactions, customer behavior, marketing spend, and other key performance indicators (KPIs). Additionally, the company aims to develop an analytical dashboard to monitor various KPIs and business metrics.
 
-Key Definitions: 
-Invoice Value:  Invoice Value =(( Quantity*Avg_price)*(1-Dicount_pct)*(1+GST))+Delivery_Charges 
-Average order value = Revenue / Transaction per customer 
- 
-Profit Margin Profit margin is the commonly used profitability ratio. It represents how much 
-percentage of total sales has earned as the gain. 
- 
-Purchase Frequency is the average number of purchases made by a customer over a defined period 
-of time (typically one month or one year). It is the sum of total number transactions divided by total 
-number customers. 
- 
-Repeat rate shows you the percentage of your current customer base that has come back to shop 
-again. 
- 
-Churn Rate is the annual percentage rate at which customers stop subscribing. 
- 
-Customer lifetime value, lifetime customer value, or life-time value is a prediction of the net 
-profit/revenue attributed to the entire future relationship with a customer. 
-Business Objective: 
-The e-commerce company is expecting below analysis using the data 
-1. Calculate Invoice amount  or sale_amount  or revenue for each transaction and item level 
- Invoice Value =(( Quantity*Avg_price)*(1-Dicount_pct)*(1+GST))+Delivery_Charges 
-2. Perform Detailed exploratory analysis 
- Understanding how many customers acquired every month 
- Understand the retention of customers on month on month basis 
- How the revenues from existing/new customers on month on month basis 
- How the discounts playing role in the revenues? 
- Analyse KPI’s like Revenue, number of orders, average order value, number of 
-customers (existing/new), quantity, by category, by month, by week, by day etc… 
- Understand the trends/seasonality of sales by category, location, month etc… 
- How number order varies and sales with different days? 
- Calculate the Revenue, Marketing spend, percentage of marketing spend out of 
-revenue, Tax, percentage of delivery charges by month. 
- How marketing spend is impacting on revenue? 
- Which product was appeared in the transactions? 
- Which product was purchased mostly based on the quantity? 
-3. Performing Customer Segmentation 
- Heuristic (Value based, RFM) – Divide the customers into Premium, Gold, Silver, 
-Standard customers and define strategy on the same.  
- Scientific (Using K-Means) & Understand the profiles. Define strategy for each 
-segment.  
-4. Predicting Customer Lifetime Value (Low Value/Medium Value/High Value) 
- First define dependent variable with categories low value, medium value, high value 
-using customer revenue.
+Available Data
+The project uses the following datasets from the e-commerce company, covering the period from January 1, 2019, to December 31, 2019:
 
-Then perform Classification model 
-5. Cross-Selling (Which products are selling together) 
- You can perform exploratory analysis & market basket analysis to understand which 
-of items can be bundled together. 
-6. Predicting Next Purchase Day(How soon each customer can visit the store (0-30 days, 30-60 
-days, 60-90 days, 90+ days) 
- For this, we need create dependent variable at customer level (average days per one 
-transaction for only repeat customers and divide into groups 0-30 days, 30-60 days,  
-60-90 days and 90+ days) then build classification model to predict next purchase of 
-given customer. 
-7. Perform cohort analysis by defining below cohorts 
- Customers who started in each month and understand their behaviour  
- Which Month cohort has maximum retention?
+Online_Sales.csv
+Contains transaction-level data from the point of sale, including:
+
+CustomerID: Unique ID of the customer
+Transaction_ID: Unique ID of the transaction
+Transaction_Date: Date of the transaction
+Product_SKU: SKU ID for the product
+Product_Description: Product description
+Product_Category: Category of the product
+Quantity: Number of items ordered
+Avg_Price: Price per unit
+Delivery_Charges: Charges for delivery
+Coupon_Status: Whether a discount coupon was applied
+Customers_Data.csv
+Contains customer demographics:
+
+CustomerID: Unique ID of the customer
+Gender: Gender of the customer
+Location: Location of the customer
+Tenure_Months: Duration of customer subscription in months
+Discount_Coupon.csv
+Details about discount coupons applied:
+
+Month: Month the coupon was applied
+Product_Category: Product category for the coupon
+Coupon_Code: Coupon code applied
+Discount_pct: Percentage of discount applied
+Marketing_Spend.csv
+Contains marketing spend details on both offline and online channels:
+
+Date: Date of the marketing spend
+Offline_Spend: Spend on offline channels (TV, Radio, NewsPapers, Billboards, etc.)
+Online_Spend: Spend on online channels (Google Ads, Facebook, etc.)
+Tax_Amount.csv
+GST (Goods and Services Tax) details for different product categories:
+
+Product_Category: Product category
+GST: GST percentage for that category
+Key Definitions
+Invoice Value:
+The total value of a transaction calculated using the formula:
+
+scss
+Copy code
+Invoice Value = ((Quantity * Avg_Price) * (1 - Discount_pct) * (1 + GST)) + Delivery_Charges
+Average Order Value (AOV):
+The total revenue divided by the number of transactions per customer.
+
+Profit Margin:
+Profit margin is the percentage of total sales that has been earned as gain.
+
+Purchase Frequency:
+The average number of purchases made by a customer over a defined period, typically a month or year.
+
+Repeat Rate:
+The percentage of your customer base that has returned to make another purchase.
+
+Churn Rate:
+The percentage of customers who stop subscribing annually.
+
+Customer Lifetime Value (CLV):
+A prediction of the net profit generated from the entire future relationship with a customer.
+
+Business Objective
+1. Invoice Calculation and Revenue Analysis
+Calculate the invoice amount for each transaction and item level using the formula above.
+2. Exploratory Data Analysis (EDA)
+Analyze customer acquisition on a monthly basis.
+
+Understand customer retention month-on-month.
+
+Measure revenue from new vs. existing customers.
+
+Analyze the impact of discounts on revenue.
+
+Explore KPIs such as revenue, number of orders, average order value, quantity sold, etc., categorized by:
+
+Month, Week, Day
+Product Category
+Location
+Sales Trends and Seasonality:
+
+Analyze trends in sales by category, location, and month.
+Investigate how sales vary on different days of the week.
+Revenue, Marketing Spend, and Tax Analysis:
+
+Measure the monthly revenue, marketing spend (offline and online), and tax percentages.
+Analyze how marketing spend impacts revenue generation.
+3. Customer Segmentation
+Heuristic-based Segmentation (RFM):
+Classify customers into Premium, Gold, Silver, and Standard categories based on recency, frequency, and monetary value, and devise strategies for each segment.
+
+Scientific-based Segmentation (K-Means Clustering):
+Perform clustering to identify different customer profiles and define tailored strategies for each segment.
+
+4. Customer Lifetime Value (CLV) Prediction
+Predict customer lifetime value by categorizing customers into:
+
+Low Value
+Medium Value
+High Value
+Build a classification model to predict the CLV based on historical purchasing behavior.
+
+5. Cross-Selling Analysis
+Perform market basket analysis to determine which products are frequently purchased together, allowing for better bundling and marketing strategies.
+6. Next Purchase Prediction
+Predict the likely next purchase date for each customer (within 0-30 days, 30-60 days, 60-90 days, and 90+ days) using classification models based on customer behavior.
+7. Cohort Analysis
+Define cohorts based on the first month of purchase and analyze customer behavior within each cohort, identifying the cohort with the highest retention rate.
+Features
+Comprehensive data analysis: Deep insights into customer behavior, sales trends, marketing spend, and more.
+Customer segmentation: Heuristic and scientific approaches to segmenting customers for targeted marketing strategies.
+Predictive modeling: Predicting customer lifetime value and next purchase date using machine learning.
+Cross-sell recommendations: Market basket analysis to find products that are often purchased together.
+Cohort analysis: Detailed cohort analysis to measure customer retention.
+Requirements
+Python 3.x
+Libraries: Pandas, Numpy, Matplotlib, Seaborn, Scikit-learn, Statsmodels, Plotly, and other necessary data science tools.
+
+
+Run the analysis notebooks to get insights:
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Contributing
+Feel free to fork the repository, create issues, and submit pull requests. Contributions are welcome!
+
+Contact
+For any questions or feedback, feel free to reach out
+
