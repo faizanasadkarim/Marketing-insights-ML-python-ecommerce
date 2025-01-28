@@ -1,8 +1,5 @@
 # E-Commerce Marketing Insights and Customer Segmentation
 
-## 📎 Project Link
-[Insert project link here]
-
 ## 🏢 Business Context
 This project helps a leading e-commerce company uncover actionable marketing insights, which are key to driving growth strategies and improving customer engagement.
 
